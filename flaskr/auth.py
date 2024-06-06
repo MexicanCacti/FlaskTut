@@ -6,10 +6,10 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from flaskr.db import get_db
 
-bp = Blueprint('Auth', __name__, url_prefix="/auth")
+bp = Blueprint('auth', __name__, url_prefix="/auth")
 
 @bp.route('/register', methods=('GET','POST')) # defines route for URL path '/register' & specifies that can handle 'GET' & 'POST' HTTP methods
-def regiser():  # defines register view function which handles requests to '/register' route
+def register():  # defines register view function which handles requests to '/register' route
     if request.method == 'POST': # checks if  request method is 'POST' (form submitted)
         username = request.form['username'] # retrieves username from submitted data
         password = request.form['password'] # retrieves password
@@ -45,8 +45,7 @@ def login():
         error = None
 
         user = db.execute(
-            'SELECT * FROM user WHERE username = ?', (username,).fetchone()
-        )
+            'SELECT * FROM user WHERE username = ?', (username,)).fetchone()
 
         # check if user in database, if not then is None
         if user is None:

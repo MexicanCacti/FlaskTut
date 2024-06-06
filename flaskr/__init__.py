@@ -34,6 +34,6 @@ def create_app(test_config =None): #factory fun to create & config instance of F
     db.init_app(app) #calls init_app function from db module.
     
     from . import auth
-    app.register_blueprint(auth.py)
+    app.register_blueprint(auth.bp)
 
     return app  # return app isntance cereated & config'd by create_app func
